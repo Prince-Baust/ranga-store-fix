@@ -42,7 +42,7 @@ const getInputValue = id => parseFloat(document.getElementById(id).innerText);
 const updatePrice = (id, value) => {
   const oldPrice = getInputValue(id);
   const newPrice = parseFloat(value);
-  const total = oldPrice + newPrice;
+  const total = (oldPrice + newPrice).toFixed(2);
   document.getElementById(id).innerText = total+'';
 };
 
