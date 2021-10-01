@@ -13,7 +13,7 @@ const showProducts = (products) => {
     div.classList.add("product");
     div.innerHTML = `
     <div class="single-product">
-        <div><img class="product-image" src=${product.image}></div>
+        <div><img class="product-image" src=${product.image} alt="Product Image"></div>
         <h3>${product.title}</h3>
         <p>Category: ${product.category}</p>
         <i class="fas fa-star"></i> ${product.rating.rate}
