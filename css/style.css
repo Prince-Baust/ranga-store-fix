@@ -1,24 +1,21 @@
+/*Google Montserrat Font*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+
 body {
+  background-color: #16a085;
+  margin: 0;
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
+  background-color: #ecf0f1;
 }
 .search-button {
   padding: 10px 50px;
   margin-left: 20px;
 }
-#all-products {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  /* border: 1px solid black; */
-  text-align: center;
-  width: 100%;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-}
 .single-product {
-  padding: 10px;
   transition: 0.6s;
+  background-color: #8999a794;
 }
 .single-product:hover {
   box-shadow: 4px 4px 7px gray;
@@ -30,6 +27,7 @@ body {
   height: 150px;
 }
 .cart {
+  background-color: #bdc3c7 ;
   width: 350px;
   /* border: 1px solid green; */
   padding: 10px;
