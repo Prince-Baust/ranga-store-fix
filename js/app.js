@@ -21,7 +21,7 @@ const showProducts = (products) => {
         <div class="card-footer">
             <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-success ms-4">add to cart</button>
             
-            <button onclick="loadSingleDetail(${product.id})" id="details-btn" class="btn btn-info ms-4">Details</button>
+            <button onclick="loadDetails(${product.id})" id="details-btn" class="btn btn-info ms-4">Details</button>
         </div>
 </div>
       `;
@@ -35,16 +35,17 @@ const addToCart = (price) => {
   updatePrice(price);
   updateTaxAndCharge();
   updateTotal();
-  document.getElementById("total-Products").innerText = count+'';
+  setInnerText('total-Products', count);
 };
 
-const loadSingleDetail = id => {
+const loadDetails = id => {
   fetch('https://fakestoreapi.com/products/'+id)
       .then(res=>res.json())
-      .then(json=>showSingleDetails(json))
+      .then(json=>showDetails(json))
 }
 
-const showSingleDetails = (product) => {
+const showDetails = (product) => {
+  document.querySelector('#single-detail').innerHTML = ``;
   const div = document.createElement("div");
   div.classList.add("col");
   div.innerHTML = `
@@ -60,11 +61,10 @@ const showSingleDetails = (product) => {
         <div class="card-footer">
             <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
             
-            <button onclick="loadSingleDetail(${product.id})" id="details-btn" class="btn btn-info ms-5">Details</button>
+            <button onclick="loadDetails(${product.id})" id="details-btn" class="btn btn-info ms-5">Details</button>
         </div>
         </div>
       `;
-  document.querySelector('#single-detail').innerHTML = ``;
   document.querySelector('#single-detail').appendChild(div);
 }
 
@@ -104,5 +104,5 @@ const updateTaxAndCharge = () => {
 //grandTotal update function
 const updateTotal = () => {
   const grandTotal = getInputValue("price") + getInputValue("delivery-charge") + getInputValue("total-tax");
-  document.getElementById("total").innerText = grandTotal.toFixed(2);
+  setInnerText('total', grandTotal)
 };

@@ -6,9 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cheap Next Door</title>
+
   <!--  Font Awesome Icons-->
   <script src="https://kit.fontawesome.com/8ec18744ec.js" crossorigin="anonymous"></script>
-
   <!--  Bootstrap 5-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <!--Custom CSS-->
@@ -17,19 +17,25 @@
 
 <body>
 <header class="container">
+  <!--Details Btn Output shown from app.js by API call-->
   <div id="single-detail"></div>
+
+  <!--  Search Box-->
   <div class="input-group my-5">
     <input type="text" class="form-control rounded" placeholder="Search Product" aria-label="Search Product" aria-describedby="button-addon2">
-    <button class="btn btn-primary rounded-pill search-button ms-3" type="button" id="button-addon2">Button</button>
+    <button class="btn btn-primary rounded-pill search-button ms-3" type="button" id="button-addon2">Search</button>
   </div>
 </header>
 
 <main>
   <div class="row">
+    <!--All Products-->
     <div class="col-md-9 col-lg-9 col-sm-7">
+      <!--Products added from app.js by API call-->
       <div id="all-products" class="row row-cols-md-3">
       </div>
     </div>
+    <!--Cart-->
     <div class="col-md-3 col-lg-3 col-sm-5 cart-main">
       <div class="cart" id="my-cart">
         <table class="table">
@@ -67,9 +73,8 @@
     </div>
   </div>
 </main>
-<footer></footer>
 
-<!-- add javascript  file  -->
+<!-- custom javascript  file  -->
 <script src="./js/app.js"></script>
 </body>
 
