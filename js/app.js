@@ -73,7 +73,7 @@ const getInputValue = id => parseFloat(document.getElementById(id).innerText);
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = value.toFixed(2)+'';
+  document.getElementById(id).innerText = value+'';
 };
 
 // main price update function
@@ -89,20 +89,20 @@ const updateTaxAndCharge = () => {
   const price = getInputValue("price");
   if (price > 200) {
     setInnerText("delivery-charge", 30);
-    setInnerText("total-tax", price * 0.2);
+    setInnerText("total-tax", (price * 0.2).toFixed(2));
   }
   if (price > 400) {
     setInnerText("delivery-charge", 50);
-    setInnerText("total-tax", price * 0.3);
+    setInnerText("total-tax", (price * 0.3).toFixed(2));
   }
   if (price > 500) {
     setInnerText("delivery-charge", 60);
-    setInnerText("total-tax", price * 0.4);
+    setInnerText("total-tax", (price * 0.4).toFixed(2));
   }
 };
 
 //grandTotal update function
 const updateTotal = () => {
   const grandTotal = getInputValue("price") + getInputValue("delivery-charge") + getInputValue("total-tax");
-  setInnerText('total', grandTotal)
+  setInnerText('total', grandTotal.toFixed(2));
 };
