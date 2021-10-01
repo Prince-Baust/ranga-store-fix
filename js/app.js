@@ -8,14 +8,16 @@ const loadProducts = () => {
 const showProducts = (products) => {
   console.log(products[0]);
   for (const product of products) {
+    // Creating Product Cards
     const div = document.createElement("div");
     div.classList.add("product");
-
     div.innerHTML = `
     <div class="single-product">
         <div><img class="product-image" src=${product.image}></div>
         <h3>${product.title}</h3>
         <p>Category: ${product.category}</p>
+        <i class="fas fa-star"></i> ${product.rating.rate}
+        <i class="fas fa-user-friends"></i> ${product.rating.count}
         <h2>Price: $ ${product.price}</h2>
         <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
         <button id="details-btn" class="btn btn-danger">Details</button></div>
@@ -28,10 +30,9 @@ let count = 0;
 const addToCart = (id, price) => {
   count++;
   updatePrice("price", price);
-
   updateTaxAndCharge();
   updateTotal();
-  document.getElementById("total-Products").innerText = count;
+  document.getElementById("total-Products").innerText = count+'';
 };
 
 const getInputValue = id => parseFloat(document.getElementById(id).innerText);
@@ -47,31 +48,29 @@ const updatePrice = (id, value) => {
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = Math.round(value);
+  document.getElementById(id).innerText = Math.round(value)+'';
 };
 
 // update delivery charge and total Tax
 const updateTaxAndCharge = () => {
-  let priceConverted = getInputValue("price");
-  if (priceConverted > 200) {
+  const price = getInputValue("price");
+  if (price > 200) {
     setInnerText("delivery-charge", 30);
-    setInnerText("total-tax", priceConverted * 0.2);
+    setInnerText("total-tax", price * 0.2);
   }
-  if (priceConverted > 400) {
+  if (price > 400) {
     setInnerText("delivery-charge", 50);
-    setInnerText("total-tax", priceConverted * 0.3);
+    setInnerText("total-tax", price * 0.3);
   }
-  if (priceConverted > 500) {
+  if (price > 500) {
     setInnerText("delivery-charge", 60);
-    setInnerText("total-tax", priceConverted * 0.4);
+    setInnerText("total-tax", price * 0.4);
   }
 };
 
 //grandTotal update function
 const updateTotal = () => {
-  const grandTotal =
-      getInputValue("price") + getInputValue("delivery-charge") +
-      getInputValue("total-tax");
-  document.getElementById("total").innerText = grandTotal;
+  const grandTotal = getInputValue("price") + getInputValue("delivery-charge") + getInputValue("total-tax");
+  document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
 loadProducts();
