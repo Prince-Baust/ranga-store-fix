@@ -2,8 +2,6 @@ fetch('https://fakestoreapi.com/products')
     .then(res=>res.json())
     .then(json=>showProducts(json))
 
-
-
 // show all product in UI 
 const showProducts = (products) => {
   for (const product of products) {
@@ -21,7 +19,7 @@ const showProducts = (products) => {
             <h2>Price: $ ${product.price}</h2>
         </div>
         <div class="card-footer">
-            <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success ms-4">add to cart</button>
+            <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-success ms-4">add to cart</button>
             
             <button onclick="loadSingleDetail(${product.id})" id="details-btn" class="btn btn-info ms-4">Details</button>
         </div>
@@ -32,9 +30,9 @@ const showProducts = (products) => {
 };
 
 let count = 0;
-const addToCart = (id, price) => {
+const addToCart = (price) => {
   count++;
-  updatePrice("price", price);
+  updatePrice(price);
   updateTaxAndCharge();
   updateTotal();
   document.getElementById("total-Products").innerText = count+'';
@@ -73,18 +71,17 @@ const showSingleDetails = (product) => {
 
 const getInputValue = id => parseFloat(document.getElementById(id).innerText);
 
-
-// main price update function
-const updatePrice = (id, value) => {
-  const oldPrice = getInputValue(id);
-  const newPrice = parseFloat(value);
-  const total = (oldPrice + newPrice).toFixed(2);
-  document.getElementById(id).innerText = total+'';
-};
-
 // set innerText function
 const setInnerText = (id, value) => {
   document.getElementById(id).innerText = value.toFixed(2)+'';
+};
+
+// main price update function
+const updatePrice = (value) => {
+  const oldPrice = getInputValue('price');
+  const newPrice = parseFloat(value);
+  const total = (oldPrice + newPrice).toFixed(2);
+  document.getElementById('price').innerText = total+'';
 };
 
 // update delivery charge and total Tax
